@@ -1,0 +1,51 @@
+#!/bin/sh
+pop1r="pop1r1 pop1r2"
+pop1bk="pop1bk1 pop1bk2"
+pop1="$pop1r $pop1bk pop1hq"
+pop2="pop2r1 pop2hq pop2bk1 pop2bk2"
+pop3="pop3r1 pop3hq pop3bk1 pop3bk2"
+pop4="pop4r1 pop4bk1 pop4bk2"
+all="$pop1 $pop2 $pop3 $pop4"
+
+update_router () { 
+   	echo "MAJ de $1"
+   	mkdir -p conf/$1/
+	sshpass -p 'root' scp -o StrictHostKeyChecking=no conf/$1/* root@$1:/etc/quagga/
+	sshpass -p 'root' ssh -o StrictHostKeyChecking=no root@$1 '/etc/init.d/S27quagga restart'
+}
+
+
+case $1 in
+	"pop1")
+	for elem in $pop1 
+	do
+		update_router $elem &
+	done
+    ;;
+    "pop2")
+	for elem in $pop2 
+	do
+		update_router $elem &
+	done
+    ;;
+    "pop3")
+	for elem in $pop3
+	do
+		update_router $elem &
+	done
+    ;;
+    "pop4")
+	for elem in $pop4
+	do
+		update_router $elem &
+	done
+    ;;
+    "all")
+	for elem in $all 
+	do
+		update_router $elem &
+	done
+    ;;
+  	*)
+	update_router $1
+esac
