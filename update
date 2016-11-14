@@ -1,11 +1,9 @@
 #!/bin/sh
-pop1r="pop1r1 pop1r2"
-pop1bk="pop1bk1 pop1bk2"
-pop1="$pop1r $pop1bk pop1hq"
-pop2="pop2r1 pop2hq pop2bk1 pop2bk2"
-pop3="pop3r1 pop3hq pop3bk1 pop3bk2"
-pop4="pop4r1 pop4bk1 pop4bk2"
-all="$pop1 $pop2 $pop3 $pop4"
+as10="as10r1 as10r2 as10r3 as10r4"
+as20="as20r1"
+as30="as30r1"
+as40="as40r1"
+all="$as10 $as20 $as30 $as40"
 
 update_router () { 
    	echo "MAJ de $1"
@@ -16,26 +14,26 @@ update_router () {
 
 
 case $1 in
-	"pop1")
-	for elem in $pop1 
+	"as10")
+	for elem in $as10 
 	do
 		update_router $elem &
 	done
     ;;
-    "pop2")
-	for elem in $pop2 
+    "as20")
+	for elem in $as20 
 	do
 		update_router $elem &
 	done
     ;;
-    "pop3")
-	for elem in $pop3
+    "as30")
+	for elem in $as30
 	do
 		update_router $elem &
 	done
     ;;
-    "pop4")
-	for elem in $pop4
+    "as40")
+	for elem in $as40
 	do
 		update_router $elem &
 	done
