@@ -7,7 +7,7 @@ echo "
 10.0.204.14 as10r4
 " >> /etc/hosts
 
-apt-get update && apt-get install sshpass
+apt-get install sshpass
 
 brctl addbr br0
 read -p "Lancer tous les périphériques de Marionnet et appuyer sur entrer" pause
